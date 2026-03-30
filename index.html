@@ -23,51 +23,25 @@
 }
 html,body{height:100%;background:var(--tg-black);color:var(--tg-white);font-family:'Barlow',sans-serif;font-size:13px;-webkit-font-smoothing:antialiased;}
 ::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:#111;}::-webkit-scrollbar-thumb{background:#333;border-radius:2px;}
-
 .top-bar{height:3px;background:var(--tg-yellow);width:100%;position:fixed;top:0;left:0;z-index:100;}
-
-.nav{
-  position:fixed;top:3px;left:0;right:0;z-index:99;
-  background:var(--tg-black);border-bottom:1px solid var(--tg-border);
-  padding:0 28px;display:flex;align-items:center;justify-content:space-between;height:56px;
-}
+.nav{position:fixed;top:3px;left:0;right:0;z-index:99;background:var(--tg-black);border-bottom:1px solid var(--tg-border);padding:0 28px;display:flex;align-items:center;justify-content:space-between;height:56px;}
 .nav-logo{display:flex;align-items:center;gap:14px;}
-.tg-badge{
-  background:var(--tg-yellow);padding:5px 10px;
-  display:flex;align-items:center;justify-content:center;
-  clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);
-  text-decoration:none;
-}
+.tg-badge{background:var(--tg-yellow);padding:5px 10px;display:flex;align-items:center;clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);}
 .tg-badge span{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:13px;color:var(--tg-black);letter-spacing:0.04em;text-transform:uppercase;}
 .nav-title-wrap{display:flex;flex-direction:column;line-height:1.15;}
 .nav-title-main{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:var(--tg-white);}
 .nav-title-sub{font-family:'Barlow Condensed',sans-serif;font-weight:500;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--tg-midgray);}
 .nav-sep{width:1px;height:26px;background:var(--tg-border);}
 .nav-tabs{display:flex;}
-.nav-tab{
-  height:56px;padding:0 16px;
-  font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:11px;
-  letter-spacing:0.1em;text-transform:uppercase;
-  cursor:pointer;border:none;background:transparent;color:var(--tg-coolgray);
-  transition:color 0.15s;display:flex;align-items:center;
-  border-bottom:2px solid transparent;position:relative;top:1px;
-}
+.nav-tab{height:56px;padding:0 16px;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;border:none;background:transparent;color:var(--tg-coolgray);transition:color 0.15s;display:flex;align-items:center;border-bottom:2px solid transparent;position:relative;top:1px;}
 .nav-tab.active{color:var(--tg-yellow);border-bottom-color:var(--tg-yellow);}
 .nav-tab:not(.active):hover{color:var(--tg-white);}
 .nav-right{display:flex;align-items:center;gap:14px;}
 .nav-stat{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--tg-coolgray);}
 .nav-stat strong{color:var(--tg-yellow);}
 .saving-txt{font-size:10px;color:var(--tg-coolgray);letter-spacing:0.06em;}
-
 .page-content{padding-top:59px;min-height:100vh;}
-
-.btn{
-  padding:9px 20px;font-family:'Barlow Condensed',sans-serif;
-  font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
-  cursor:pointer;border:none;transition:all 0.15s;
-  display:inline-flex;align-items:center;gap:6px;
-  clip-path:polygon(5px 0%,100% 0%,calc(100% - 5px) 100%,0% 100%);
-}
+.btn{padding:9px 20px;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;border:none;transition:all 0.15s;display:inline-flex;align-items:center;gap:6px;clip-path:polygon(5px 0%,100% 0%,calc(100% - 5px) 100%,0% 100%);}
 .btn-primary{background:var(--tg-yellow);color:var(--tg-black);}
 .btn-primary:hover{background:#ffe820;}
 .btn-primary:disabled{opacity:0.3;cursor:not-allowed;}
@@ -77,14 +51,11 @@ html,body{height:100%;background:var(--tg-black);color:var(--tg-white);font-fami
 .btn-ghost:hover{border-color:var(--tg-coolgray);color:var(--tg-white);}
 .btn-danger{background:transparent;color:var(--tg-red);border:1px solid #5a2020;clip-path:none;}
 .btn-danger:hover{background:var(--tg-red);color:var(--tg-white);}
-
 .tag{display:inline-block;padding:2px 8px;font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;white-space:nowrap;}
 .tag-country{background:var(--tg-yellow);color:var(--tg-black);}
 .tag-account{background:var(--tg-surface3);color:var(--tg-lightgray);border:1px solid var(--tg-border);}
 .tag-format{background:var(--tg-white);color:var(--tg-black);}
 .tag-type{background:transparent;color:var(--tg-midgray);border:1px solid #3a3c3e;}
-
-/* GALLERY */
 #view-gallery{padding:20px 28px;}
 .filter-bar{background:var(--tg-surface);border:1px solid var(--tg-border);padding:12px 16px;margin-bottom:20px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
 .filter-label{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--tg-coolgray);margin-right:4px;white-space:nowrap;}
@@ -94,7 +65,6 @@ select option{background:#27292B;}
 .filter-bar select{min-width:130px;}
 .filter-bar input{min-width:150px;}
 .results-count{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--tg-coolgray);margin-bottom:14px;}
-
 .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1px;background:var(--tg-border);}
 .photo-card{background:var(--tg-surface);cursor:pointer;overflow:hidden;transition:all 0.2s;}
 .photo-card:hover{z-index:1;box-shadow:0 0 0 1px var(--tg-yellow);}
@@ -108,14 +78,11 @@ select option{background:#27292B;}
 .empty-state{text-align:center;padding:80px 20px;grid-column:1/-1;}
 .empty-icon{font-size:32px;margin-bottom:12px;opacity:0.4;}
 .empty-text{color:var(--tg-coolgray);font-size:12px;margin-bottom:20px;}
-
 .skel-card{background:var(--tg-surface);}
 .skel-img{width:100%;aspect-ratio:4/3;background:linear-gradient(90deg,var(--tg-surface) 25%,var(--tg-surface2) 50%,var(--tg-surface) 75%);background-size:200% 100%;animation:shimmer 1.6s infinite;}
 .skel-body{padding:10px 12px;}
 .skel-line{height:9px;margin-bottom:8px;background:linear-gradient(90deg,var(--tg-surface) 25%,var(--tg-surface2) 50%,var(--tg-surface) 75%);background-size:200% 100%;animation:shimmer 1.6s infinite;}
 @keyframes shimmer{0%{background-position:200% 0;}100%{background-position:-200% 0;}}
-
-/* UPLOAD */
 #view-upload{padding:28px;max-width:680px;}
 .section-header{border-bottom:1px solid var(--tg-border);padding-bottom:16px;margin-bottom:28px;}
 .section-header h2{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;}
@@ -138,8 +105,6 @@ textarea{width:100%;resize:vertical;}
 .progress-text{font-family:'Barlow Condensed',sans-serif;font-size:10px;color:var(--tg-coolgray);letter-spacing:0.08em;text-transform:uppercase;margin-top:6px;}
 .upload-actions{display:flex;gap:10px;margin-top:28px;}
 .upload-error{background:#1a0808;border:1px solid #5a2020;color:var(--tg-red);padding:10px 14px;font-size:11px;margin-top:12px;}
-
-/* MODAL */
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.93);z-index:200;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px);}
 .modal-overlay.open{display:flex;}
 .modal{background:var(--tg-surface);border:1px solid var(--tg-border);max-width:900px;width:100%;max-height:90vh;overflow-y:auto;}
@@ -149,10 +114,6 @@ textarea{width:100%;resize:vertical;}
 .modal-notes{font-size:13px;color:var(--tg-midgray);line-height:1.7;padding:12px 16px;background:var(--tg-surface2);border-left:3px solid var(--tg-yellow);margin-bottom:14px;}
 .modal-meta{font-family:'Barlow Condensed',sans-serif;font-size:10px;color:var(--tg-coolgray);margin-bottom:20px;letter-spacing:0.06em;text-transform:uppercase;}
 .modal-actions{display:flex;gap:10px;align-items:center;}
-.modal-link{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--tg-yellow);text-decoration:none;padding:9px 16px;border:1px solid var(--tg-yellow);display:inline-flex;align-items:center;gap:5px;transition:all 0.15s;}
-.modal-link:hover{background:var(--tg-yellow);color:var(--tg-black);}
-
-/* Toast */
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--tg-surface3);border:1px solid var(--tg-border);color:var(--tg-white);padding:10px 20px;font-size:12px;font-family:'Barlow Condensed',sans-serif;letter-spacing:0.06em;text-transform:uppercase;transition:transform 0.3s;z-index:300;white-space:nowrap;}
 .toast.show{transform:translateX(-50%) translateY(0);}
 .toast.success{border-color:var(--tg-yellow);color:var(--tg-yellow);}
@@ -160,12 +121,10 @@ textarea{width:100%;resize:vertical;}
 </style>
 </head>
 <body>
-
 <div class="top-bar"></div>
-
 <nav class="nav">
   <div class="nav-logo">
-    <a class="tg-badge" href="https://www.technogym.com" target="_blank"><span>TechnoGym</span></a>
+    <div class="tg-badge"><span>TechnoGym</span></div>
     <div class="nav-title-wrap">
       <span class="nav-title-main">Clubs Presence APAC</span>
       <span class="nav-title-sub">Best Practices Repository</span>
@@ -184,8 +143,6 @@ textarea{width:100%;resize:vertical;}
 </nav>
 
 <div class="page-content">
-
-<!-- GALLERY -->
 <div id="view-gallery">
   <div class="filter-bar">
     <span class="filter-label">Filter by</span>
@@ -220,7 +177,6 @@ textarea{width:100%;resize:vertical;}
   <div class="gallery-grid" id="gallery-grid"></div>
 </div>
 
-<!-- UPLOAD -->
 <div id="view-upload" style="display:none">
   <div class="section-header">
     <h2>Upload Photos</h2>
@@ -232,7 +188,7 @@ textarea{width:100%;resize:vertical;}
       <div id="drop-default">
         <div class="drop-icon">📸</div>
         <div class="drop-text">Click to select or drag photos here</div>
-        <div class="drop-hint">JPG · PNG · HEIC &nbsp;·&nbsp; Multiple files supported</div>
+        <div class="drop-hint">JPG · PNG · HEIC &nbsp;·&nbsp; Max 3 photos at a time</div>
       </div>
       <div id="drop-preview" style="display:none">
         <div class="preview-grid" id="preview-grid"></div>
@@ -299,8 +255,7 @@ textarea{width:100%;resize:vertical;}
     <button class="btn btn-ghost" onclick="showView('gallery')">Cancel</button>
   </div>
 </div>
-
-</div><!-- end page-content -->
+</div>
 
 <!-- MODAL -->
 <div class="modal-overlay" id="modal" onclick="closeModal()">
@@ -312,8 +267,7 @@ textarea{width:100%;resize:vertical;}
       <div class="modal-meta" id="modal-meta"></div>
       <div class="modal-actions">
         <button class="btn btn-outline" onclick="closeModal()">Close</button>
-        <a class="modal-link" id="modal-full-link" href="#" target="_blank">Full Size ↗</a>
-        <button class="btn btn-danger" id="modal-delete-btn" onclick="handleDelete()">Delete</button>
+        <button class="btn btn-danger" onclick="handleDelete()">Delete</button>
       </div>
     </div>
   </div>
@@ -321,10 +275,8 @@ textarea{width:100%;resize:vertical;}
 
 <div class="toast" id="toast"></div>
 
-<!-- Firebase SDK -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js";
 import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -337,29 +289,48 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const storage = getStorage(app);
 const db = getFirestore(app);
 
-// ── State ────────────────────────────────────────────────────
-window._allPhotos = [];
-window._selectedPhoto = null;
-window._selectedFiles = [];
-window._selectedPreviews = [];
+// ── State ──────────────────────────────────────────────────
+window._photos = [];
+window._selected = null;
+window._files = [];
+window._previews = [];
 
-// ── Utils ────────────────────────────────────────────────────
-function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+// ── Helpers ────────────────────────────────────────────────
+function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 
-function showToast(msg, type=''){
+function showToast(msg,type){
   var t=document.getElementById('toast');
   t.textContent=msg;t.className='toast'+(type?' '+type:'');
-  t.classList.add('show');
-  setTimeout(function(){t.classList.remove('show');},3000);
+  t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);
 }
 
 function setSaving(on){document.getElementById('saving-indicator').textContent=on?'Saving…':'';}
 
-// ── Views ────────────────────────────────────────────────────
-window.showView = function(name){
+// Compress image to base64, max 800px wide, quality 0.7
+function compressImage(file){
+  return new Promise(resolve=>{
+    var reader=new FileReader();
+    reader.onload=function(e){
+      var img=new Image();
+      img.onload=function(){
+        var canvas=document.createElement('canvas');
+        var MAX=800;
+        var w=img.width,h=img.height;
+        if(w>MAX){h=Math.round(h*MAX/w);w=MAX;}
+        canvas.width=w;canvas.height=h;
+        canvas.getContext('2d').drawImage(img,0,0,w,h);
+        resolve(canvas.toDataURL('image/jpeg',0.72));
+      };
+      img.src=e.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+// ── Views ──────────────────────────────────────────────────
+window.showView=function(name){
   document.getElementById('view-gallery').style.display=name==='gallery'?'block':'none';
   document.getElementById('view-upload').style.display=name==='upload'?'block':'none';
   var tabs=document.querySelectorAll('.nav-tab');
@@ -368,18 +339,17 @@ window.showView = function(name){
   window.scrollTo(0,0);
 };
 
-// ── Load photos ──────────────────────────────────────────────
+// ── Load ───────────────────────────────────────────────────
 async function loadPhotos(){
   renderSkeletons();
-  try {
-    const q = query(collection(db,'photos'), orderBy('createdAt','desc'));
-    const snap = await getDocs(q);
-    window._allPhotos = snap.docs.map(d=>({id:d.id,...d.data()}));
-    document.getElementById('photo-count').textContent = window._allPhotos.length;
-    renderGallery(window._allPhotos);
-  } catch(e){
-    document.getElementById('gallery-grid').innerHTML='<div style="padding:60px;text-align:center;color:#555;grid-column:1/-1">Failed to load photos. Check Firebase rules.</div>';
-    console.error(e);
+  try{
+    const q=query(collection(db,'photos'),orderBy('createdAt','desc'));
+    const snap=await getDocs(q);
+    window._photos=snap.docs.map(d=>({id:d.id,...d.data()}));
+    document.getElementById('photo-count').textContent=window._photos.length;
+    renderGallery(window._photos);
+  }catch(e){
+    document.getElementById('gallery-grid').innerHTML='<div style="padding:60px;text-align:center;color:#555;grid-column:1/-1">Failed to load. Check Firebase rules.<br><small>'+e.message+'</small></div>';
   }
 }
 
@@ -392,85 +362,88 @@ function renderSkeletons(){
 function renderGallery(photos){
   var g=document.getElementById('gallery-grid');
   document.getElementById('results-count').textContent=photos.length+' photo'+(photos.length!==1?'s':'');
-  document.getElementById('photo-count').textContent=window._allPhotos.length;
+  document.getElementById('photo-count').textContent=window._photos.length;
   if(!photos.length){
-    g.innerHTML='<div class="empty-state"><div class="empty-icon">📷</div><div class="empty-text">'+(window._allPhotos.length===0?'No photos yet. Be the first to upload.':'No photos match your filters.')+'</div>'+(window._allPhotos.length===0?'<button class="btn btn-primary" onclick="showView(\'upload\')">Upload Photos</button>':'')+'</div>';
+    g.innerHTML='<div class="empty-state"><div class="empty-icon">📷</div><div class="empty-text">'+(window._photos.length===0?'No photos yet. Be the first to upload.':'No photos match your filters.')+'</div>'+(window._photos.length===0?'<button class="btn btn-primary" onclick="showView(\'upload\')">Upload Photos</button>':'')+'</div>';
     return;
   }
-  g.innerHTML=photos.map(function(p){
-    return '<div class="photo-card" onclick="openModal(\''+p.id+'\')">'+
-      '<div class="card-img"><img src="'+p.thumbnailUrl+'" alt="'+esc(p.account)+'" loading="lazy"/></div>'+
-      '<div class="card-body">'+
-        '<div class="photo-tags"><span class="tag tag-country">'+esc(p.country)+'</span><span class="tag tag-account">'+esc(p.account)+'</span></div>'+
-        '<div class="photo-tags"><span class="tag tag-format">'+esc(p.format)+'</span>'+(p.type?'<span class="tag tag-type">'+esc(p.type)+'</span>':'')+'</div>'+
-        (p.notes?'<div class="photo-notes">'+esc(p.notes)+'</div>':'')+
-        '<div class="photo-meta">'+esc(p.uploader||'Team')+' · '+esc(p.date)+'</div>'+
-      '</div></div>';
-  }).join('');
+  g.innerHTML=photos.map(p=>
+    '<div class="photo-card" onclick="openModal(\''+p.id+'\')">'+
+    '<div class="card-img"><img src="'+p.dataUrl+'" alt="'+esc(p.account)+'" loading="lazy"/></div>'+
+    '<div class="card-body">'+
+    '<div class="photo-tags"><span class="tag tag-country">'+esc(p.country)+'</span><span class="tag tag-account">'+esc(p.account)+'</span></div>'+
+    '<div class="photo-tags"><span class="tag tag-format">'+esc(p.format)+'</span>'+(p.type?'<span class="tag tag-type">'+esc(p.type)+'</span>':'')+'</div>'+
+    (p.notes?'<div class="photo-notes">'+esc(p.notes)+'</div>':'')+
+    '<div class="photo-meta">'+esc(p.uploader||'Team')+' · '+esc(p.date)+'</div>'+
+    '</div></div>'
+  ).join('');
 }
 
-// ── Filters ──────────────────────────────────────────────────
-window.applyFilters = function(){
+// ── Filters ────────────────────────────────────────────────
+window.applyFilters=function(){
   var q=document.getElementById('f-search').value.toLowerCase();
   var country=document.getElementById('f-country').value,account=document.getElementById('f-account').value;
   var format=document.getElementById('f-format').value,type=document.getElementById('f-type').value;
-  var f=window._allPhotos.filter(function(p){
+  var f=window._photos.filter(p=>{
     if(country&&p.country!==country)return false;
     if(account&&p.account!==account)return false;
     if(format&&p.format!==format)return false;
     if(type&&p.type!==type)return false;
-    if(q){var s=[p.country,p.account,p.format,p.type,p.notes,p.uploader].join(' ').toLowerCase();if(s.indexOf(q)===-1)return false;}
+    if(q){var s=[p.country,p.account,p.format,p.type,p.notes,p.uploader].join(' ').toLowerCase();if(!s.includes(q))return false;}
     return true;
   });
   renderGallery(f);
   document.getElementById('clear-btn').style.display=(q||country||account||format||type)?'inline-flex':'none';
 };
 
-window.clearFilters = function(){
-  ['f-search','f-country','f-account','f-format','f-type'].forEach(function(id){
+window.clearFilters=function(){
+  ['f-search','f-country','f-account','f-format','f-type'].forEach(id=>{
     var e=document.getElementById(id);if(e.tagName==='INPUT')e.value='';else e.selectedIndex=0;
   });
   window.applyFilters();
 };
 
-// ── File handling ────────────────────────────────────────────
-window.handleFileSelect = function(files){ window._selectedFiles=Array.from(files); buildPreviews(); };
-window.handleDragOver = function(e){ e.preventDefault(); document.getElementById('drop-zone').classList.add('dragover'); };
-window.handleDragLeave = function(){ document.getElementById('drop-zone').classList.remove('dragover'); };
-window.handleDrop = function(e){
-  e.preventDefault(); document.getElementById('drop-zone').classList.remove('dragover');
-  window._selectedFiles=Array.from(e.dataTransfer.files).filter(function(f){return f.type.startsWith('image/');});
+// ── File handling ──────────────────────────────────────────
+window.handleFileSelect=function(files){
+  window._files=Array.from(files).slice(0,3); // max 3 at a time
+  buildPreviews();
+};
+window.handleDragOver=function(e){e.preventDefault();document.getElementById('drop-zone').classList.add('dragover');};
+window.handleDragLeave=function(){document.getElementById('drop-zone').classList.remove('dragover');};
+window.handleDrop=function(e){
+  e.preventDefault();document.getElementById('drop-zone').classList.remove('dragover');
+  window._files=Array.from(e.dataTransfer.files).filter(f=>f.type.startsWith('image/')).slice(0,3);
   buildPreviews();
 };
 
 function buildPreviews(){
-  window._selectedPreviews=[];
-  if(!window._selectedFiles.length)return;
+  window._previews=[];
+  if(!window._files.length)return;
   var grid=document.getElementById('preview-grid');grid.innerHTML='';var loaded=0;
-  window._selectedFiles.forEach(function(file,i){
+  window._files.forEach((file,i)=>{
     var r=new FileReader();
     r.onload=function(e){
-      window._selectedPreviews[i]=e.target.result;
+      window._previews[i]=e.target.result;
       var img=document.createElement('img');img.src=e.target.result;img.className='preview-thumb';grid.appendChild(img);
       loaded++;
-      if(loaded===window._selectedFiles.length){
+      if(loaded===window._files.length){
         document.getElementById('drop-default').style.display='none';
         document.getElementById('drop-preview').style.display='block';
-        document.getElementById('preview-count').textContent=window._selectedFiles.length+' file'+(window._selectedFiles.length>1?'s':'')+' selected · click to change';
+        document.getElementById('preview-count').textContent=window._files.length+' file'+(window._files.length>1?'s':'')+' selected · click to change';
         checkUploadBtn();
       }
     };r.readAsDataURL(file);
   });
 }
 
-window.checkUploadBtn = function(){
-  var ok=window._selectedFiles.length>0&&document.getElementById('u-country').value&&document.getElementById('u-account').value&&document.getElementById('u-format').value;
+window.checkUploadBtn=function(){
+  var ok=window._files.length>0&&document.getElementById('u-country').value&&document.getElementById('u-account').value&&document.getElementById('u-format').value;
   var btn=document.getElementById('upload-btn');btn.disabled=!ok;
-  btn.textContent=window._selectedFiles.length>1?'Upload '+window._selectedFiles.length+' Photos':'Upload Photo';
+  btn.textContent=window._files.length>1?'Upload '+window._files.length+' Photos':'Upload Photo';
 };
 
-// ── Upload ───────────────────────────────────────────────────
-window.handleUpload = async function(){
+// ── Upload ─────────────────────────────────────────────────
+window.handleUpload=async function(){
   var meta={
     country:document.getElementById('u-country').value,
     account:document.getElementById('u-account').value,
@@ -484,42 +457,32 @@ window.handleUpload = async function(){
   document.getElementById('upload-btn').disabled=true;
   setSaving(true);
 
-  try {
-    for(var i=0;i<window._selectedFiles.length;i++){
-      var pct=Math.round((i/window._selectedFiles.length)*100);
+  var today=new Date();
+  var dateStr=today.getFullYear()+'-'+String(today.getMonth()+1).padStart(2,'0')+'-'+String(today.getDate()).padStart(2,'0');
+
+  try{
+    for(var i=0;i<window._files.length;i++){
+      var pct=Math.round((i/window._files.length)*100);
       document.getElementById('progress-fill').style.width=pct+'%';
-      document.getElementById('progress-text').textContent='Uploading '+(i+1)+' of '+window._selectedFiles.length+'…';
+      document.getElementById('progress-text').textContent='Compressing and uploading '+(i+1)+' of '+window._files.length+'…';
 
-      var file=window._selectedFiles[i];
-      var filename=Date.now()+'_'+file.name.replace(/[^a-zA-Z0-9._-]/g,'_');
-      var storageRef=ref(storage,'photos/'+filename);
-      await uploadBytes(storageRef, file);
-      var url=await getDownloadURL(storageRef);
-
-      var today=new Date();
-      var dateStr=today.getFullYear()+'-'+String(today.getMonth()+1).padStart(2,'0')+'-'+String(today.getDate()).padStart(2,'0');
+      // Compress to ~100KB
+      var dataUrl=await compressImage(window._files[i]);
 
       await addDoc(collection(db,'photos'),{
-        filename:file.name,
-        thumbnailUrl:url,
-        fullUrl:url,
-        storagePath:'photos/'+filename,
-        country:meta.country,
-        account:meta.account,
-        format:meta.format,
-        type:meta.type,
-        notes:meta.notes,
-        uploader:meta.uploader,
-        date:dateStr,
-        createdAt:Date.now()
+        filename:window._files[i].name,
+        dataUrl:dataUrl,
+        country:meta.country,account:meta.account,format:meta.format,
+        type:meta.type,notes:meta.notes,uploader:meta.uploader,
+        date:dateStr,createdAt:Date.now()
       });
     }
     document.getElementById('progress-fill').style.width='100%';
-    showToast('Photos uploaded successfully','success');
+    showToast('Photos uploaded!','success');
     resetUploadForm();
     await loadPhotos();
     showView('gallery');
-  } catch(e){
+  }catch(e){
     document.getElementById('upload-error').style.display='block';
     document.getElementById('upload-error').textContent='Upload failed: '+e.message;
     showToast('Upload failed','error');
@@ -530,9 +493,9 @@ window.handleUpload = async function(){
 };
 
 function resetUploadForm(){
-  window._selectedFiles=[];window._selectedPreviews=[];
-  ['u-country','u-account','u-format','u-type'].forEach(function(id){document.getElementById(id).selectedIndex=0;});
-  ['u-notes','u-uploader'].forEach(function(id){document.getElementById(id).value='';});
+  window._files=[];window._previews=[];
+  ['u-country','u-account','u-format','u-type'].forEach(id=>document.getElementById(id).selectedIndex=0);
+  ['u-notes','u-uploader'].forEach(id=>document.getElementById(id).value='');
   document.getElementById('file-input').value='';
   document.getElementById('drop-default').style.display='block';
   document.getElementById('drop-preview').style.display='none';
@@ -542,12 +505,12 @@ function resetUploadForm(){
   window.checkUploadBtn();
 }
 
-// ── Modal ────────────────────────────────────────────────────
-window.openModal = function(id){
-  window._selectedPhoto=window._allPhotos.find(function(p){return p.id===id;});
-  if(!window._selectedPhoto)return;
-  var p=window._selectedPhoto;
-  document.getElementById('modal-img').src=p.thumbnailUrl;
+// ── Modal ──────────────────────────────────────────────────
+window.openModal=function(id){
+  window._selected=window._photos.find(p=>p.id===id);
+  if(!window._selected)return;
+  var p=window._selected;
+  document.getElementById('modal-img').src=p.dataUrl;
   document.getElementById('modal-tags').innerHTML=
     '<span class="tag tag-country">'+esc(p.country)+'</span>'+
     '<span class="tag tag-account">'+esc(p.account)+'</span>'+
@@ -556,32 +519,27 @@ window.openModal = function(id){
   var notes=document.getElementById('modal-notes');
   if(p.notes){notes.textContent=p.notes;notes.style.display='block';}else{notes.style.display='none';}
   document.getElementById('modal-meta').textContent='Uploaded by '+(p.uploader||'Team')+' · '+p.date+' · '+p.filename;
-  document.getElementById('modal-full-link').href=p.fullUrl;
   document.getElementById('modal').classList.add('open');
 };
 
-window.closeModal = function(){ document.getElementById('modal').classList.remove('open'); window._selectedPhoto=null; };
+window.closeModal=function(){document.getElementById('modal').classList.remove('open');window._selected=null;};
 
-window.handleDelete = async function(){
-  if(!window._selectedPhoto)return;
+window.handleDelete=async function(){
+  if(!window._selected)return;
   if(!confirm('Delete this photo permanently?'))return;
-  var p=window._selectedPhoto;
-  window.closeModal();
-  setSaving(true);
-  try {
-    if(p.storagePath){ var sRef=ref(storage,p.storagePath); await deleteObject(sRef); }
-    await deleteDoc(doc(db,'photos',p.id));
-    window._allPhotos=window._allPhotos.filter(function(x){return x.id!==p.id;});
-    renderGallery(window._allPhotos);
-    document.getElementById('photo-count').textContent=window._allPhotos.length;
-    showToast('Photo deleted','success');
-  } catch(e){ showToast('Delete failed: '+e.message,'error'); console.error(e); }
+  var id=window._selected.id;
+  window.closeModal();setSaving(true);
+  try{
+    await deleteDoc(doc(db,'photos',id));
+    window._photos=window._photos.filter(p=>p.id!==id);
+    renderGallery(window._photos);
+    document.getElementById('photo-count').textContent=window._photos.length;
+    showToast('Deleted','success');
+  }catch(e){showToast('Delete failed','error');}
   setSaving(false);
 };
 
-document.addEventListener('keydown',function(e){if(e.key==='Escape')window.closeModal();});
-
-// ── Init ─────────────────────────────────────────────────────
+document.addEventListener('keydown',e=>{if(e.key==='Escape')window.closeModal();});
 loadPhotos();
 </script>
 </body>
