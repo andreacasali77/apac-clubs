@@ -131,8 +131,9 @@ textarea{width:100%;resize:vertical;}
     </div>
     <div class="nav-sep"></div>
     <div class="nav-tabs">
-      <button class="nav-tab active" onclick="showView('gallery')">Gallery</button>
-      <button class="nav-tab" onclick="showView('upload')">Upload</button>
+      <button class="nav-tab" id="tab-home" onclick="showView('home')">Home</button>
+      <button class="nav-tab active" id="tab-gallery" onclick="showView('gallery')">Gallery</button>
+      <button class="nav-tab" id="tab-upload" onclick="showView('upload')">Upload</button>
     </div>
   </div>
   <div class="nav-right">
@@ -143,6 +144,50 @@ textarea{width:100%;resize:vertical;}
 </nav>
 
 <div class="page-content">
+
+<!-- HOME -->
+<div id="view-home" style="display:none">
+  <div style="max-width:900px;margin:0 auto;padding:60px 28px 40px;">
+    <div style="border-bottom:1px solid var(--tg-border);padding-bottom:32px;margin-bottom:40px;">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--tg-midgray);margin-bottom:10px;">Technogym Asia Pacific</div>
+      <h1 style="font-family:'Barlow Condensed',sans-serif;font-size:42px;font-weight:800;letter-spacing:0.02em;text-transform:uppercase;line-height:1.05;margin-bottom:16px;">Clubs Presence<br><span style="color:var(--tg-yellow);">APAC</span></h1>
+      <p style="font-size:14px;color:var(--tg-coolgray);line-height:1.7;max-width:560px;">A shared best practices repository for the Technogym APAC clubs team. Upload, tag and browse gym setup photos from across the region to inspire and align the team.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--tg-border);margin-bottom:40px;">
+      <div style="background:var(--tg-surface);padding:28px 24px;">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--tg-yellow);margin-bottom:10px;">Browse</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;text-transform:uppercase;margin-bottom:8px;">Photo Gallery</div>
+        <div style="font-size:12px;color:var(--tg-coolgray);line-height:1.6;margin-bottom:20px;">Filter by country, key account, product format and gym type. Click any photo to see full details.</div>
+        <button class="btn btn-primary" onclick="showView('gallery')">Open Gallery</button>
+      </div>
+      <div style="background:var(--tg-surface);padding:28px 24px;">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--tg-yellow);margin-bottom:10px;">Contribute</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;text-transform:uppercase;margin-bottom:8px;">Upload Photos</div>
+        <div style="font-size:12px;color:var(--tg-coolgray);line-height:1.6;margin-bottom:20px;">Add gym photos from your market. Tag them with country, account, format and your best practice notes.</div>
+        <button class="btn btn-outline" onclick="showView('upload')">Upload Photos</button>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--tg-border);">
+      <div style="background:var(--tg-surface);padding:18px 16px;text-align:center;">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:800;color:var(--tg-yellow);" id="home-count">—</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--tg-coolgray);margin-top:4px;">Photos</div>
+      </div>
+      <div style="background:var(--tg-surface);padding:18px 16px;text-align:center;">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:800;color:var(--tg-yellow);">14</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--tg-coolgray);margin-top:4px;">Markets</div>
+      </div>
+      <div style="background:var(--tg-surface);padding:18px 16px;text-align:center;">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:800;color:var(--tg-yellow);">10</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--tg-coolgray);margin-top:4px;">Accounts</div>
+      </div>
+      <div style="background:var(--tg-surface);padding:18px 16px;text-align:center;">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:800;color:var(--tg-yellow);">10</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--tg-coolgray);margin-top:4px;">Formats</div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div id="view-gallery">
   <div class="filter-bar">
     <span class="filter-label">Filter by</span>
@@ -331,11 +376,13 @@ function compressImage(file){
 
 // ── Views ──────────────────────────────────────────────────
 window.showView=function(name){
+  document.getElementById('view-home').style.display=name==='home'?'block':'none';
   document.getElementById('view-gallery').style.display=name==='gallery'?'block':'none';
   document.getElementById('view-upload').style.display=name==='upload'?'block':'none';
-  var tabs=document.querySelectorAll('.nav-tab');
-  tabs[0].classList.toggle('active',name==='gallery');
-  tabs[1].classList.toggle('active',name==='upload');
+  document.getElementById('tab-home').classList.toggle('active',name==='home');
+  document.getElementById('tab-gallery').classList.toggle('active',name==='gallery');
+  document.getElementById('tab-upload').classList.toggle('active',name==='upload');
+  if(name==='home') document.getElementById('home-count').textContent=window._photos.length||'—';
   window.scrollTo(0,0);
 };
 
@@ -541,6 +588,7 @@ window.handleDelete=async function(){
 
 document.addEventListener('keydown',e=>{if(e.key==='Escape')window.closeModal();});
 loadPhotos();
+showView('gallery');
 </script>
 </body>
 </html>
