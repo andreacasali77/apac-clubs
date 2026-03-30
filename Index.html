@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Clubs Presence APAC · Technogym</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --tg-yellow:#F4E116;
+  --tg-black:#000000;
+  --tg-dark:#27292B;
+  --tg-coolgray:#53565A;
+  --tg-midgray:#808080;
+  --tg-lightgray:#EDEDED;
+  --tg-white:#FFFFFF;
+  --tg-surface:#111213;
+  --tg-surface2:#1c1e20;
+  --tg-surface3:#27292B;
+  --tg-border:#2e3133;
+  --tg-red:#CE2929;
+}
+html,body{height:100%;background:var(--tg-black);color:var(--tg-white);font-family:'Barlow',sans-serif;font-size:13px;-webkit-font-smoothing:antialiased;}
+::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:#111;}::-webkit-scrollbar-thumb{background:#333;border-radius:2px;}
+
+.top-bar{height:3px;background:var(--tg-yellow);width:100%;position:fixed;top:0;left:0;z-index:100;}
+
+.nav{
+  position:fixed;top:3px;left:0;right:0;z-index:99;
+  background:var(--tg-black);border-bottom:1px solid var(--tg-border);
+  padding:0 28px;display:flex;align-items:center;justify-content:space-between;height:56px;
+}
+.nav-logo{display:flex;align-items:center;gap:14px;}
+.tg-badge{
+  background:var(--tg-yellow);padding:5px 10px;
+  display:flex;align-items:center;justify-content:center;
+  clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);
+  text-decoration:none;
+}
+.tg-badge span{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:13px;color:var(--tg-black);letter-spacing:0.04em;text-transform:uppercase;}
+.nav-title-wrap{display:flex;flex-direction:column;line-height:1.15;}
+.nav-title-main{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:var(--tg-white);}
+.nav-title-sub{font-family:'Barlow Condensed',sans-serif;font-weight:500;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--tg-midgray);}
+.nav-sep{width:1px;height:26px;background:var(--tg-border);}
+.nav-tabs{display:flex;}
+.nav-tab{
+  height:56px;padding:0 16px;
+  font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:11px;
+  letter-spacing:0.1em;text-transform:uppercase;
+  cursor:pointer;border:none;background:transparent;color:var(--tg-coolgray);
+  transition:color 0.15s;display:flex;align-items:center;
+  border-bottom:2px solid transparent;position:relative;top:1px;
+}
+.nav-tab.active{color:var(--tg-yellow);border-bottom-color:var(--tg-yellow);}
+.nav-tab:not(.active):hover{color:var(--tg-white);}
+.nav-right{display:flex;align-items:center;gap:14px;}
+.nav-stat{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--tg-coolgray);}
+.nav-stat strong{color:var(--tg-yellow);}
+.saving-txt{font-size:10px;color:var(--tg-coolgray);letter-spacing:0.06em;}
+
+.page-content{padding-top:59px;min-height:100vh;}
+
+.btn{
+  padding:9px 20px;font-family:'Barlow Condensed',sans-serif;
+  font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
+  cursor:pointer;border:none;transition:all 0.15s;
+  display:inline-flex;align-items:center;gap:6px;
+  clip-path:polygon(5px 0%,100% 0%,calc(100% - 5px) 100%,0% 100%);
+}
+.btn-primary{background:var(--tg-yellow);color:var(--tg-black);}
+.btn-primary:hover{background:#ffe820;}
+.btn-primary:disabled{opacity:0.3;cursor:not-allowed;}
+.btn-outline{background:transparent;color:var(--tg-white);border:1px solid var(--tg-coolgray);clip-path:none;}
+.btn-outline:hover{border-color:var(--tg-white);}
+.btn-ghost{background:transparent;color:var(--tg-midgray);border:1px solid var(--tg-border);clip-path:none;}
+.btn-ghost:hover{border-color:var(--tg-coolgray);color:var(--tg-white);}
+.btn-danger{background:transparent;color:var(--tg-red);border:1px solid #5a2020;clip-path:none;}
+.btn-danger:hover{background:var(--tg-red);color:var(--tg-white);}
+
+.tag{display:inline-block;padding:2px 8px;font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;white-space:nowrap;}
+.tag-country{background:var(--tg-yellow);color:var(--tg-black);}
+.tag-account{background:var(--tg-surface3);color:var(--tg-lightgray);border:1px solid var(--tg-border);}
+.tag-format{background:var(--tg-white);color:var(--tg-black);}
+.tag-type{background:transparent;color:var(--tg-midgray);border:1px solid #3a3c3e;}
+
+/* GALLERY */
+#view-gallery{padding:20px 28px;}
+.filter-bar{background:var(--tg-surface);border:1px solid var(--tg-border);padding:12px 16px;margin-bottom:20px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.filter-label{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--tg-coolgray);margin-right:4px;white-space:nowrap;}
+select,input[type=text],textarea{background:var(--tg-surface2);border:1px solid var(--tg-border);color:var(--tg-white);padding:7px 11px;font-size:11px;font-family:'Barlow',sans-serif;outline:none;transition:border-color 0.15s;border-radius:0;}
+select:focus,input[type=text]:focus,textarea:focus{border-color:var(--tg-yellow);}
+select option{background:#27292B;}
+.filter-bar select{min-width:130px;}
+.filter-bar input{min-width:150px;}
+.results-count{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--tg-coolgray);margin-bottom:14px;}
+
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1px;background:var(--tg-border);}
+.photo-card{background:var(--tg-surface);cursor:pointer;overflow:hidden;transition:all 0.2s;}
+.photo-card:hover{z-index:1;box-shadow:0 0 0 1px var(--tg-yellow);}
+.card-img{overflow:hidden;aspect-ratio:4/3;background:var(--tg-surface2);}
+.card-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.4s ease;filter:brightness(0.9);}
+.photo-card:hover .card-img img{transform:scale(1.04);filter:brightness(1);}
+.card-body{padding:10px 12px;}
+.photo-tags{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:6px;}
+.photo-notes{font-size:11px;color:var(--tg-coolgray);line-height:1.5;margin-top:6px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;}
+.photo-meta{font-size:10px;color:#444;margin-top:8px;letter-spacing:0.03em;font-family:'Barlow Condensed',sans-serif;}
+.empty-state{text-align:center;padding:80px 20px;grid-column:1/-1;}
+.empty-icon{font-size:32px;margin-bottom:12px;opacity:0.4;}
+.empty-text{color:var(--tg-coolgray);font-size:12px;margin-bottom:20px;}
+
+.skel-card{background:var(--tg-surface);}
+.skel-img{width:100%;aspect-ratio:4/3;background:linear-gradient(90deg,var(--tg-surface) 25%,var(--tg-surface2) 50%,var(--tg-surface) 75%);background-size:200% 100%;animation:shimmer 1.6s infinite;}
+.skel-body{padding:10px 12px;}
+.skel-line{height:9px;margin-bottom:8px;background:linear-gradient(90deg,var(--tg-surface) 25%,var(--tg-surface2) 50%,var(--tg-surface) 75%);background-size:200% 100%;animation:shimmer 1.6s infinite;}
+@keyframes shimmer{0%{background-position:200% 0;}100%{background-position:-200% 0;}}
+
+/* UPLOAD */
+#view-upload{padding:28px;max-width:680px;}
+.section-header{border-bottom:1px solid var(--tg-border);padding-bottom:16px;margin-bottom:28px;}
+.section-header h2{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;}
+.section-header p{font-size:12px;color:var(--tg-coolgray);margin-top:6px;line-height:1.6;}
+.form-section{margin-bottom:20px;}
+.form-label{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--tg-coolgray);margin-bottom:7px;display:block;}
+.required{color:var(--tg-yellow);}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.form-grid select,.form-grid input{width:100%;}
+textarea{width:100%;resize:vertical;}
+.drop-zone{border:1px dashed var(--tg-border);padding:36px 20px;text-align:center;cursor:pointer;transition:all 0.2s;background:var(--tg-surface);}
+.drop-zone:hover,.drop-zone.dragover{border-color:var(--tg-yellow);background:var(--tg-surface2);}
+.drop-icon{font-size:26px;margin-bottom:10px;opacity:0.5;}
+.drop-text{font-size:12px;color:var(--tg-midgray);font-weight:500;}
+.drop-hint{font-family:'Barlow Condensed',sans-serif;font-size:10px;color:var(--tg-coolgray);margin-top:5px;letter-spacing:0.06em;text-transform:uppercase;}
+.preview-grid{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-bottom:10px;}
+.preview-thumb{width:72px;height:54px;object-fit:cover;border:1px solid var(--tg-border);}
+.progress-bar{height:2px;background:var(--tg-surface3);overflow:hidden;margin-bottom:6px;}
+.progress-fill{height:100%;background:var(--tg-yellow);transition:width 0.3s;}
+.progress-text{font-family:'Barlow Condensed',sans-serif;font-size:10px;color:var(--tg-coolgray);letter-spacing:0.08em;text-transform:uppercase;margin-top:6px;}
+.upload-actions{display:flex;gap:10px;margin-top:28px;}
+.upload-error{background:#1a0808;border:1px solid #5a2020;color:var(--tg-red);padding:10px 14px;font-size:11px;margin-top:12px;}
+
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.93);z-index:200;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px);}
+.modal-overlay.open{display:flex;}
+.modal{background:var(--tg-surface);border:1px solid var(--tg-border);max-width:900px;width:100%;max-height:90vh;overflow-y:auto;}
+.modal-img{width:100%;max-height:56vh;object-fit:contain;background:var(--tg-black);display:block;}
+.modal-body{padding:20px 24px;}
+.modal-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;}
+.modal-notes{font-size:13px;color:var(--tg-midgray);line-height:1.7;padding:12px 16px;background:var(--tg-surface2);border-left:3px solid var(--tg-yellow);margin-bottom:14px;}
+.modal-meta{font-family:'Barlow Condensed',sans-serif;font-size:10px;color:var(--tg-coolgray);margin-bottom:20px;letter-spacing:0.06em;text-transform:uppercase;}
+.modal-actions{display:flex;gap:10px;align-items:center;}
+.modal-link{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--tg-yellow);text-decoration:none;padding:9px 16px;border:1px solid var(--tg-yellow);display:inline-flex;align-items:center;gap:5px;transition:all 0.15s;}
+.modal-link:hover{background:var(--tg-yellow);color:var(--tg-black);}
+
+/* Toast */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--tg-surface3);border:1px solid var(--tg-border);color:var(--tg-white);padding:10px 20px;font-size:12px;font-family:'Barlow Condensed',sans-serif;letter-spacing:0.06em;text-transform:uppercase;transition:transform 0.3s;z-index:300;white-space:nowrap;}
+.toast.show{transform:translateX(-50%) translateY(0);}
+.toast.success{border-color:var(--tg-yellow);color:var(--tg-yellow);}
+.toast.error{border-color:var(--tg-red);color:var(--tg-red);}
+</style>
+</head>
+<body>
+
+<div class="top-bar"></div>
+
+<nav class="nav">
+  <div class="nav-logo">
+    <a class="tg-badge" href="https://www.technogym.com" target="_blank"><span>TechnoGym</span></a>
+    <div class="nav-title-wrap">
+      <span class="nav-title-main">Clubs Presence APAC</span>
+      <span class="nav-title-sub">Best Practices Repository</span>
+    </div>
+    <div class="nav-sep"></div>
+    <div class="nav-tabs">
+      <button class="nav-tab active" onclick="showView('gallery')">Gallery</button>
+      <button class="nav-tab" onclick="showView('upload')">Upload</button>
+    </div>
+  </div>
+  <div class="nav-right">
+    <span class="saving-txt" id="saving-indicator"></span>
+    <span class="nav-stat"><strong id="photo-count">—</strong> Photos</span>
+    <button class="btn btn-primary" onclick="showView('upload')">+ Add Photos</button>
+  </div>
+</nav>
+
+<div class="page-content">
+
+<!-- GALLERY -->
+<div id="view-gallery">
+  <div class="filter-bar">
+    <span class="filter-label">Filter by</span>
+    <input type="text" id="f-search" placeholder="Search…" oninput="applyFilters()"/>
+    <select id="f-country" onchange="applyFilters()">
+      <option value="">All Countries</option>
+      <option>Australia</option><option>China</option><option>Hong Kong</option><option>India</option>
+      <option>Indonesia</option><option>Japan</option><option>Malaysia</option><option>New Zealand</option>
+      <option>Philippines</option><option>Singapore</option><option>South Korea</option>
+      <option>Taiwan</option><option>Thailand</option><option>Vietnam</option>
+    </select>
+    <select id="f-account" onchange="applyFilters()">
+      <option value="">All Accounts</option>
+      <option>Anytime Fitness</option><option>Snap Fitness</option><option>Evolution Wellness</option>
+      <option>Fitness First</option><option>Celebrity Fitness</option><option>Virgin Active</option>
+      <option>24/7 Fitness</option><option>Pure Fitness</option><option>Jetts Fitness</option><option>Other / Independent</option>
+    </select>
+    <select id="f-format" onchange="applyFilters()">
+      <option value="">All Formats</option>
+      <option>TeamBeats</option><option>SkillX</option><option>SkillRun Bootcamp</option>
+      <option>Biostrength</option><option>TG Live</option><option>Cardio Zone</option>
+      <option>Free Weights Area</option><option>Full Floor Setup</option><option>Functional Zone</option><option>Other</option>
+    </select>
+    <select id="f-type" onchange="applyFilters()">
+      <option value="">All Types</option>
+      <option>Premium / Luxury</option><option>Mid-Market</option><option>Budget / Value</option>
+      <option>Boutique</option><option>Hybrid / Mixed</option><option>Corporate Wellness</option><option>Hotel / Resort</option>
+    </select>
+    <button class="btn btn-ghost" id="clear-btn" onclick="clearFilters()" style="display:none;padding:7px 12px;">Clear</button>
+  </div>
+  <div class="results-count" id="results-count"></div>
+  <div class="gallery-grid" id="gallery-grid"></div>
+</div>
+
+<!-- UPLOAD -->
+<div id="view-upload" style="display:none">
+  <div class="section-header">
+    <h2>Upload Photos</h2>
+    <p>Add gym photos to the shared APAC best practices repository. Fields marked <span class="required">*</span> are required.</p>
+  </div>
+  <div class="form-section">
+    <label class="form-label">Photos <span class="required">*</span></label>
+    <div class="drop-zone" id="drop-zone" onclick="document.getElementById('file-input').click()" ondragover="handleDragOver(event)" ondragleave="handleDragLeave()" ondrop="handleDrop(event)">
+      <div id="drop-default">
+        <div class="drop-icon">📸</div>
+        <div class="drop-text">Click to select or drag photos here</div>
+        <div class="drop-hint">JPG · PNG · HEIC &nbsp;·&nbsp; Multiple files supported</div>
+      </div>
+      <div id="drop-preview" style="display:none">
+        <div class="preview-grid" id="preview-grid"></div>
+        <div class="drop-hint" id="preview-count"></div>
+      </div>
+    </div>
+    <input type="file" id="file-input" accept="image/*" multiple style="display:none" onchange="handleFileSelect(this.files)"/>
+  </div>
+  <div class="form-section">
+    <div class="form-grid">
+      <div>
+        <label class="form-label">Country <span class="required">*</span></label>
+        <select id="u-country" onchange="checkUploadBtn()">
+          <option value="">Select country</option>
+          <option>Australia</option><option>China</option><option>Hong Kong</option><option>India</option>
+          <option>Indonesia</option><option>Japan</option><option>Malaysia</option><option>New Zealand</option>
+          <option>Philippines</option><option>Singapore</option><option>South Korea</option>
+          <option>Taiwan</option><option>Thailand</option><option>Vietnam</option>
+        </select>
+      </div>
+      <div>
+        <label class="form-label">Key Account / Chain <span class="required">*</span></label>
+        <select id="u-account" onchange="checkUploadBtn()">
+          <option value="">Select account</option>
+          <option>Anytime Fitness</option><option>Snap Fitness</option><option>Evolution Wellness</option>
+          <option>Fitness First</option><option>Celebrity Fitness</option><option>Virgin Active</option>
+          <option>24/7 Fitness</option><option>Pure Fitness</option><option>Jetts Fitness</option><option>Other / Independent</option>
+        </select>
+      </div>
+      <div>
+        <label class="form-label">Product Format <span class="required">*</span></label>
+        <select id="u-format" onchange="checkUploadBtn()">
+          <option value="">Select format</option>
+          <option>TeamBeats</option><option>SkillX</option><option>SkillRun Bootcamp</option>
+          <option>Biostrength</option><option>TG Live</option><option>Cardio Zone</option>
+          <option>Free Weights Area</option><option>Full Floor Setup</option><option>Functional Zone</option><option>Other</option>
+        </select>
+      </div>
+      <div>
+        <label class="form-label">Gym Type</label>
+        <select id="u-type">
+          <option value="">Select type</option>
+          <option>Premium / Luxury</option><option>Mid-Market</option><option>Budget / Value</option>
+          <option>Boutique</option><option>Hybrid / Mixed</option><option>Corporate Wellness</option><option>Hotel / Resort</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="form-section">
+    <label class="form-label">Notes / Best Practice Insight</label>
+    <textarea id="u-notes" rows="3" placeholder="What's notable? Layout choices, key account context, learnings for the team…"></textarea>
+  </div>
+  <div class="form-section">
+    <label class="form-label">Your Name</label>
+    <input type="text" id="u-uploader" placeholder="e.g. Andrea, Wenwen, Patrick…"/>
+  </div>
+  <div id="progress-section" style="display:none">
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+    <div class="progress-text" id="progress-text">Uploading…</div>
+  </div>
+  <div id="upload-error" class="upload-error" style="display:none"></div>
+  <div class="upload-actions">
+    <button class="btn btn-primary" id="upload-btn" onclick="handleUpload()" disabled>Upload Photos</button>
+    <button class="btn btn-ghost" onclick="showView('gallery')">Cancel</button>
+  </div>
+</div>
+
+</div><!-- end page-content -->
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" onclick="closeModal()">
+  <div class="modal" onclick="event.stopPropagation()">
+    <img class="modal-img" id="modal-img" src="" alt=""/>
+    <div class="modal-body">
+      <div class="modal-tags" id="modal-tags"></div>
+      <div class="modal-notes" id="modal-notes" style="display:none"></div>
+      <div class="modal-meta" id="modal-meta"></div>
+      <div class="modal-actions">
+        <button class="btn btn-outline" onclick="closeModal()">Close</button>
+        <a class="modal-link" id="modal-full-link" href="#" target="_blank">Full Size ↗</a>
+        <button class="btn btn-danger" id="modal-delete-btn" onclick="handleDelete()">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<!-- Firebase SDK -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js";
+import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBA2nPFcpaxejmg0LGjaagYvGn4c_yBDpk",
+  authDomain: "technogym-apac.firebaseapp.com",
+  projectId: "technogym-apac",
+  storageBucket: "technogym-apac.firebasestorage.app",
+  messagingSenderId: "430675482914",
+  appId: "1:430675482914:web:5cf2b7d9e2c6de07ffed7b"
+};
+
+const app = initializeApp(firebaseConfig);
+const storage = getStorage(app);
+const db = getFirestore(app);
+
+// ── State ────────────────────────────────────────────────────
+window._allPhotos = [];
+window._selectedPhoto = null;
+window._selectedFiles = [];
+window._selectedPreviews = [];
+
+// ── Utils ────────────────────────────────────────────────────
+function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
+function showToast(msg, type=''){
+  var t=document.getElementById('toast');
+  t.textContent=msg;t.className='toast'+(type?' '+type:'');
+  t.classList.add('show');
+  setTimeout(function(){t.classList.remove('show');},3000);
+}
+
+function setSaving(on){document.getElementById('saving-indicator').textContent=on?'Saving…':'';}
+
+// ── Views ────────────────────────────────────────────────────
+window.showView = function(name){
+  document.getElementById('view-gallery').style.display=name==='gallery'?'block':'none';
+  document.getElementById('view-upload').style.display=name==='upload'?'block':'none';
+  var tabs=document.querySelectorAll('.nav-tab');
+  tabs[0].classList.toggle('active',name==='gallery');
+  tabs[1].classList.toggle('active',name==='upload');
+  window.scrollTo(0,0);
+};
+
+// ── Load photos ──────────────────────────────────────────────
+async function loadPhotos(){
+  renderSkeletons();
+  try {
+    const q = query(collection(db,'photos'), orderBy('createdAt','desc'));
+    const snap = await getDocs(q);
+    window._allPhotos = snap.docs.map(d=>({id:d.id,...d.data()}));
+    document.getElementById('photo-count').textContent = window._allPhotos.length;
+    renderGallery(window._allPhotos);
+  } catch(e){
+    document.getElementById('gallery-grid').innerHTML='<div style="padding:60px;text-align:center;color:#555;grid-column:1/-1">Failed to load photos. Check Firebase rules.</div>';
+    console.error(e);
+  }
+}
+
+function renderSkeletons(){
+  var g=document.getElementById('gallery-grid'),h='';
+  for(var i=0;i<8;i++)h+='<div class="skel-card"><div class="skel-img"></div><div class="skel-body"><div class="skel-line" style="width:60%"></div><div class="skel-line" style="width:40%"></div></div></div>';
+  g.innerHTML=h;
+}
+
+function renderGallery(photos){
+  var g=document.getElementById('gallery-grid');
+  document.getElementById('results-count').textContent=photos.length+' photo'+(photos.length!==1?'s':'');
+  document.getElementById('photo-count').textContent=window._allPhotos.length;
+  if(!photos.length){
+    g.innerHTML='<div class="empty-state"><div class="empty-icon">📷</div><div class="empty-text">'+(window._allPhotos.length===0?'No photos yet. Be the first to upload.':'No photos match your filters.')+'</div>'+(window._allPhotos.length===0?'<button class="btn btn-primary" onclick="showView(\'upload\')">Upload Photos</button>':'')+'</div>';
+    return;
+  }
+  g.innerHTML=photos.map(function(p){
+    return '<div class="photo-card" onclick="openModal(\''+p.id+'\')">'+
+      '<div class="card-img"><img src="'+p.thumbnailUrl+'" alt="'+esc(p.account)+'" loading="lazy"/></div>'+
+      '<div class="card-body">'+
+        '<div class="photo-tags"><span class="tag tag-country">'+esc(p.country)+'</span><span class="tag tag-account">'+esc(p.account)+'</span></div>'+
+        '<div class="photo-tags"><span class="tag tag-format">'+esc(p.format)+'</span>'+(p.type?'<span class="tag tag-type">'+esc(p.type)+'</span>':'')+'</div>'+
+        (p.notes?'<div class="photo-notes">'+esc(p.notes)+'</div>':'')+
+        '<div class="photo-meta">'+esc(p.uploader||'Team')+' · '+esc(p.date)+'</div>'+
+      '</div></div>';
+  }).join('');
+}
+
+// ── Filters ──────────────────────────────────────────────────
+window.applyFilters = function(){
+  var q=document.getElementById('f-search').value.toLowerCase();
+  var country=document.getElementById('f-country').value,account=document.getElementById('f-account').value;
+  var format=document.getElementById('f-format').value,type=document.getElementById('f-type').value;
+  var f=window._allPhotos.filter(function(p){
+    if(country&&p.country!==country)return false;
+    if(account&&p.account!==account)return false;
+    if(format&&p.format!==format)return false;
+    if(type&&p.type!==type)return false;
+    if(q){var s=[p.country,p.account,p.format,p.type,p.notes,p.uploader].join(' ').toLowerCase();if(s.indexOf(q)===-1)return false;}
+    return true;
+  });
+  renderGallery(f);
+  document.getElementById('clear-btn').style.display=(q||country||account||format||type)?'inline-flex':'none';
+};
+
+window.clearFilters = function(){
+  ['f-search','f-country','f-account','f-format','f-type'].forEach(function(id){
+    var e=document.getElementById(id);if(e.tagName==='INPUT')e.value='';else e.selectedIndex=0;
+  });
+  window.applyFilters();
+};
+
+// ── File handling ────────────────────────────────────────────
+window.handleFileSelect = function(files){ window._selectedFiles=Array.from(files); buildPreviews(); };
+window.handleDragOver = function(e){ e.preventDefault(); document.getElementById('drop-zone').classList.add('dragover'); };
+window.handleDragLeave = function(){ document.getElementById('drop-zone').classList.remove('dragover'); };
+window.handleDrop = function(e){
+  e.preventDefault(); document.getElementById('drop-zone').classList.remove('dragover');
+  window._selectedFiles=Array.from(e.dataTransfer.files).filter(function(f){return f.type.startsWith('image/');});
+  buildPreviews();
+};
+
+function buildPreviews(){
+  window._selectedPreviews=[];
+  if(!window._selectedFiles.length)return;
+  var grid=document.getElementById('preview-grid');grid.innerHTML='';var loaded=0;
+  window._selectedFiles.forEach(function(file,i){
+    var r=new FileReader();
+    r.onload=function(e){
+      window._selectedPreviews[i]=e.target.result;
+      var img=document.createElement('img');img.src=e.target.result;img.className='preview-thumb';grid.appendChild(img);
+      loaded++;
+      if(loaded===window._selectedFiles.length){
+        document.getElementById('drop-default').style.display='none';
+        document.getElementById('drop-preview').style.display='block';
+        document.getElementById('preview-count').textContent=window._selectedFiles.length+' file'+(window._selectedFiles.length>1?'s':'')+' selected · click to change';
+        checkUploadBtn();
+      }
+    };r.readAsDataURL(file);
+  });
+}
+
+window.checkUploadBtn = function(){
+  var ok=window._selectedFiles.length>0&&document.getElementById('u-country').value&&document.getElementById('u-account').value&&document.getElementById('u-format').value;
+  var btn=document.getElementById('upload-btn');btn.disabled=!ok;
+  btn.textContent=window._selectedFiles.length>1?'Upload '+window._selectedFiles.length+' Photos':'Upload Photo';
+};
+
+// ── Upload ───────────────────────────────────────────────────
+window.handleUpload = async function(){
+  var meta={
+    country:document.getElementById('u-country').value,
+    account:document.getElementById('u-account').value,
+    format:document.getElementById('u-format').value,
+    type:document.getElementById('u-type').value,
+    notes:document.getElementById('u-notes').value,
+    uploader:document.getElementById('u-uploader').value||'Team'
+  };
+  document.getElementById('progress-section').style.display='block';
+  document.getElementById('upload-error').style.display='none';
+  document.getElementById('upload-btn').disabled=true;
+  setSaving(true);
+
+  try {
+    for(var i=0;i<window._selectedFiles.length;i++){
+      var pct=Math.round((i/window._selectedFiles.length)*100);
+      document.getElementById('progress-fill').style.width=pct+'%';
+      document.getElementById('progress-text').textContent='Uploading '+(i+1)+' of '+window._selectedFiles.length+'…';
+
+      var file=window._selectedFiles[i];
+      var filename=Date.now()+'_'+file.name.replace(/[^a-zA-Z0-9._-]/g,'_');
+      var storageRef=ref(storage,'photos/'+filename);
+      await uploadBytes(storageRef, file);
+      var url=await getDownloadURL(storageRef);
+
+      var today=new Date();
+      var dateStr=today.getFullYear()+'-'+String(today.getMonth()+1).padStart(2,'0')+'-'+String(today.getDate()).padStart(2,'0');
+
+      await addDoc(collection(db,'photos'),{
+        filename:file.name,
+        thumbnailUrl:url,
+        fullUrl:url,
+        storagePath:'photos/'+filename,
+        country:meta.country,
+        account:meta.account,
+        format:meta.format,
+        type:meta.type,
+        notes:meta.notes,
+        uploader:meta.uploader,
+        date:dateStr,
+        createdAt:Date.now()
+      });
+    }
+    document.getElementById('progress-fill').style.width='100%';
+    showToast('Photos uploaded successfully','success');
+    resetUploadForm();
+    await loadPhotos();
+    showView('gallery');
+  } catch(e){
+    document.getElementById('upload-error').style.display='block';
+    document.getElementById('upload-error').textContent='Upload failed: '+e.message;
+    showToast('Upload failed','error');
+    console.error(e);
+  }
+  setSaving(false);
+  document.getElementById('upload-btn').disabled=false;
+};
+
+function resetUploadForm(){
+  window._selectedFiles=[];window._selectedPreviews=[];
+  ['u-country','u-account','u-format','u-type'].forEach(function(id){document.getElementById(id).selectedIndex=0;});
+  ['u-notes','u-uploader'].forEach(function(id){document.getElementById(id).value='';});
+  document.getElementById('file-input').value='';
+  document.getElementById('drop-default').style.display='block';
+  document.getElementById('drop-preview').style.display='none';
+  document.getElementById('preview-grid').innerHTML='';
+  document.getElementById('progress-section').style.display='none';
+  document.getElementById('upload-error').style.display='none';
+  window.checkUploadBtn();
+}
+
+// ── Modal ────────────────────────────────────────────────────
+window.openModal = function(id){
+  window._selectedPhoto=window._allPhotos.find(function(p){return p.id===id;});
+  if(!window._selectedPhoto)return;
+  var p=window._selectedPhoto;
+  document.getElementById('modal-img').src=p.thumbnailUrl;
+  document.getElementById('modal-tags').innerHTML=
+    '<span class="tag tag-country">'+esc(p.country)+'</span>'+
+    '<span class="tag tag-account">'+esc(p.account)+'</span>'+
+    '<span class="tag tag-format">'+esc(p.format)+'</span>'+
+    (p.type?'<span class="tag tag-type">'+esc(p.type)+'</span>':'');
+  var notes=document.getElementById('modal-notes');
+  if(p.notes){notes.textContent=p.notes;notes.style.display='block';}else{notes.style.display='none';}
+  document.getElementById('modal-meta').textContent='Uploaded by '+(p.uploader||'Team')+' · '+p.date+' · '+p.filename;
+  document.getElementById('modal-full-link').href=p.fullUrl;
+  document.getElementById('modal').classList.add('open');
+};
+
+window.closeModal = function(){ document.getElementById('modal').classList.remove('open'); window._selectedPhoto=null; };
+
+window.handleDelete = async function(){
+  if(!window._selectedPhoto)return;
+  if(!confirm('Delete this photo permanently?'))return;
+  var p=window._selectedPhoto;
+  window.closeModal();
+  setSaving(true);
+  try {
+    if(p.storagePath){ var sRef=ref(storage,p.storagePath); await deleteObject(sRef); }
+    await deleteDoc(doc(db,'photos',p.id));
+    window._allPhotos=window._allPhotos.filter(function(x){return x.id!==p.id;});
+    renderGallery(window._allPhotos);
+    document.getElementById('photo-count').textContent=window._allPhotos.length;
+    showToast('Photo deleted','success');
+  } catch(e){ showToast('Delete failed: '+e.message,'error'); console.error(e); }
+  setSaving(false);
+};
+
+document.addEventListener('keydown',function(e){if(e.key==='Escape')window.closeModal();});
+
+// ── Init ─────────────────────────────────────────────────────
+loadPhotos();
+</script>
+</body>
+</html>
